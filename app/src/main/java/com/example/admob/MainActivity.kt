@@ -18,3 +18,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+////Integrate AdMob into your Android application using Kotlin.
