@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.admob.databinding.ActivityMainBinding
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.interstitial.InterstitialAd
@@ -49,6 +50,26 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnAd.setOnClickListener {
             if (mInterstitialAd != null) {
+
+                mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                    override fun onAdClicked() {
+                        // Called when a click is recorded for an ad.
+                    }
+
+                    override fun onAdDismissedFullScreenContent() {
+                        // Called when ad is dismissed.
+                        mInterstitialAd = null
+                    }
+
+                    override fun onAdImpression() {
+                        // Called when an impression is recorded for an ad.
+                    }
+
+                    override fun onAdShowedFullScreenContent() {
+                        // Called when ad is shown.
+                    }
+                }
+
                 mInterstitialAd?.show(this)
             } else {
                 Toast.makeText(this, "The interstitial ad wasn't ready yet.", Toast.LENGTH_SHORT)
