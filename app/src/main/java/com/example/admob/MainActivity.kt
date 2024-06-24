@@ -1,5 +1,6 @@
 package com.example.admob
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -58,7 +59,8 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onAdDismissedFullScreenContent() {
                         // Called when ad is dismissed.
-                        mInterstitialAd = null
+                        val intent = Intent(this@MainActivity, MainActivity2::class.java)
+                        startActivity(intent)
                     }
 
                     override fun onAdImpression() {
